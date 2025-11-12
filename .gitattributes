@@ -1,0 +1,15 @@
+# Mark HTML/CSS as documentation, not primary code
+*.html linguist-documentation
+*.css linguist-documentation
+*.htm linguist-documentation
+
+# Mark JavaScript as vendored if it's libraries
+# (Remove this line if your JS is custom code)
+customer-frontend/node_modules/* linguist-vendored
+
+# Ensure C# is detected properly
+*.cs linguist-language=C#
+*.csproj linguist-language=XML
+
+# Mark test files appropriately
+*.Tests/* linguist-language=C#
