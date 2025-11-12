@@ -114,8 +114,8 @@ dotnet test
 - **Clean Architecture**: Separation of concerns with distinct layers
 - **Repository Pattern**: Abstracted data access for maintainability
 - **Minimal API**: Modern, lightweight API design
-- **Comprehensive Testing**: Unit tests ensure code reliability
-- **Type Safety**: Strong typing with C# models
+- **Comprehensive Testing**: Unit tests ensure code reliability.
+- **Type Safety**: Strong typing with C# models.
 
 ---
 
