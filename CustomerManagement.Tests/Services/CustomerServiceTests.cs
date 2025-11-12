@@ -105,7 +105,7 @@ namespace CustomerManagement.Tests.Services
 
             // Assert
             result.Should().NotBeNull();
-            result.CustomerId.Should().Be(customerId);
+            result!.CustomerId.Should().Be(customerId);
             result.FullName.Should().Be("John Doe");
             result.Addresses.Should().HaveCount(1);
             result.Addresses[0].AddressType.Should().Be("Home");

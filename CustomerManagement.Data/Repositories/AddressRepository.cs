@@ -35,9 +35,10 @@ namespace CustomerManagement.Data.Repositories
         }
         // Update an existing address
 
-        public async Task UpdateAsync(Address address)
+        public Task UpdateAsync(Address address)
         {
             _context.Addresses.Update(address);
+            return Task.CompletedTask;
         }
         // Delete an address by ID
 

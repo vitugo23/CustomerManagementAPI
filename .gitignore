@@ -18,6 +18,9 @@
 # VS Code
 .vscode/
 
+# Claude Code
+.claude/
+
 # Frontend Node.js
 node_modules/
 npm-debug.log*
@@ -27,6 +30,9 @@ dist/
 build/
 .next/
 out/
+
+# Customer Frontend (ignore entire folder)
+customer-frontend/
 
 # Environment files
 .env

@@ -75,10 +75,11 @@ namespace CustomerManagement.Data.Repositories
         }
         // Updates an existing customer
 
-        public async Task UpdateAsync(Customer customer)
+        public Task UpdateAsync(Customer customer)
         {
             customer.LastUpdated = DateTime.UtcNow;
             _context.Customers.Update(customer);
+            return Task.CompletedTask;
         }
         // Soft deletes a customer by setting IsActive to false
 

@@ -9,9 +9,19 @@ using CustomerManagement.Data.Services.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services
-builder.Services.AddDbContext<CustomerContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Add services - Configure database based on environment
+if (builder.Environment.EnvironmentName.Equals("Test", StringComparison.OrdinalIgnoreCase))
+{
+    // Use InMemory database for testing
+    builder.Services.AddDbContext<CustomerContext>(options =>
+        options.UseInMemoryDatabase("TestDb"));
+}
+else
+{
+    // Use SQL Server for development and production
+    builder.Services.AddDbContext<CustomerContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+}
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -695,21 +705,24 @@ app.MapPost("/api/orders", async (CreateOrderDto orderDto, CustomerContext db) =
 .WithSummary("Create new order")
 .WithDescription("Create a new order and associate it with customers");
 
-// Database seeding
-using (var scope = app.Services.CreateScope())
+// Database seeding (only if not running in test environment)
+if (!app.Environment.EnvironmentName.Equals("Test", StringComparison.OrdinalIgnoreCase))
 {
-    var context = scope.ServiceProvider.GetRequiredService<CustomerContext>();
-    try
+    using (var scope = app.Services.CreateScope())
     {
-        // Ensure database is created
-        context.Database.EnsureCreated();
-        
-        // Only seed if no data exists
-        SeedData.Initialize(context);
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"An error occurred seeding the database: {ex.Message}");
+        var context = scope.ServiceProvider.GetRequiredService<CustomerContext>();
+        try
+        {
+            // Ensure database is created
+            context.Database.EnsureCreated();
+
+            // Only seed if no data exists
+            SeedData.Initialize(context);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred seeding the database: {ex.Message}");
+        }
     }
 }
 

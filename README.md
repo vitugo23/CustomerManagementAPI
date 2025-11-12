@@ -12,6 +12,24 @@ A full-stack customer management system built with .NET Minimal API, following c
 - Modern frontend interface
 - SQL Server database integration
 
+## Screenshots
+
+### API Documentation (Swagger)
+![Swagger UI](screenshots/swagger-ui.png)
+*Interactive API documentation with all endpoints*
+
+### Customer List Interface
+![Customer List](screenshots/customer-list.png)
+*Clean and intuitive customer management interface*
+
+### Database Query Results
+![Database Query](screenshots/database-query.png)
+*Customer data retrieved from SQL Server database*
+
+### API Response Example
+![API Response](screenshots/api-response.png)
+*JSON response from GET /api/customers endpoint*
+
 ## Tech Stack
 
 **Backend:**

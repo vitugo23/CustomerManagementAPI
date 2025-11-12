@@ -45,9 +45,10 @@ namespace CustomerManagement.Data.Repositories
             await _context.Orders.AddAsync(order);
         }
         // Update an existing order
-        public async Task UpdateAsync(Order order)
+        public Task UpdateAsync(Order order)
         {
             _context.Orders.Update(order);
+            return Task.CompletedTask;
         }
         // Delete an order by ID
 
